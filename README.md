@@ -3,6 +3,26 @@
 This project demonstrates a basic NFTCollateralLoan smart contract project. It uses Hardhat and was set up with hardhat init. 
 It comes with a sample NFTCollateralLoan contract, a test for that contract, and a Hardhat Ignition module that deploys that contract and associated Mock contract to get things running on testnet.
 
+
+## Set up `env.` file
+
+ 1. **Setting Up the .env File**  
+    - Begin by creating a `.env` file at the root of your project directory.
+    - Include the following keys with their respective values obtained from external services:
+        - The `PRIVATE_KEY` is used to sign transactions and should be obtained from your MetaMask wallet.
+        - The `INFURA_API_KEY` is necessary to connect your application to the Ethereum network via Infura.
+        - The `LINEASCAN_API_KEY` is used for verifying contracts and interacting with the blockchain explorer.
+
+2. **Obtaining API Keys**:
+    
+    - **Infura API Key**: Sign up at [Infura.io](https://infura.io/) and create a new project to receive an API key.
+    - **Lineascan API Key**: Register at [Lineascan](https://lineascan.build/) and access your API key through your account settings.
+
+> Don't forget to activate your api key both for linea goerli testnet and mainnet. 
+> Don't forget to get Linea-testnet-ETH from the faucet : https://www.infura.io/faucet/linea
+
+## Run and deploy
+
 Try running some of the following tasks:
 
 ```shell
@@ -32,3 +52,11 @@ const tokenContract = "0xA01EBEfca89fcc414E9A4B7784E0631FD05a1C23";
 ```
 
 With one of the mock nft contract deployed. The script uses the realContractAddress member added in the NFT mock contract to recover data associated with the real nft on the mainnet. This will allow us to simulate existing NFTs. Crucial to get good information from the NFT api. 
+
+## Launch DApp 
+
+```
+cd client 
+pnpm install 
+pnpm run dev
+```
