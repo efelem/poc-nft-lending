@@ -1,7 +1,12 @@
 import fetch from "node-fetch";
 import Web3 from "web3";
 
-const web3 = new Web3(
+const web3MainNet = new Web3(
+    new Web3.providers.HttpProvider(
+        "https://mainnet.infura.io/v3/d8607552897d445b83e2c542b292acf7"
+    )
+);
+const web3Testnet = new Web3(
     new Web3.providers.HttpProvider(
         "https://linea-goerli.infura.io/v3/d8607552897d445b83e2c542b292acf7"
     )
@@ -27,14 +32,34 @@ const tokenURIABI = [
         stateMutability: "view",
         type: "function",
     },
+    {
+        inputs: [],
+        name: "realContractAddress",
+        outputs: [
+            {
+                internalType: "address",
+                name: "",
+                type: "address"
+            }
+        ],
+        stateMutability: "view",
+        type: "function"
+    },
 ];
 
-const tokenContract = "0xAb62Dee57c3180bde54fE9e787f6d1b8E846e334"; // BAYC contract address
+
+
+
+const tokenContract = "0xA01EBEfca89fcc414E9A4B7784E0631FD05a1C23"; // 
+//const tokenContract = "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"; // BAYC contract address
 const tokenId = 1; // A token we'd like to retrieve its metadata of
 
-const contract = new web3.eth.Contract(tokenURIABI, tokenContract);
+const contractMock = new web3Testnet.eth.Contract(tokenURIABI, tokenContract);
 
 async function getNFTMetadata() {
+    const realTokenContract = await contractMock.methods.realContractAddress().call();
+    console.log(realTokenContract);
+    const contract = new web3MainNet.eth.Contract(tokenURIABI, realTokenContract);
     const result = await contract.methods.tokenURI(tokenId).call();
 
     console.log(result); // ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/101
