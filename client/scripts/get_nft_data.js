@@ -29,7 +29,7 @@ const tokenURIABI = [
     },
 ];
 
-const tokenContract = "0x6f242e7B9f04e130124e629f57BF83aa736d9d57"; // BAYC contract address
+const tokenContract = "0xAb62Dee57c3180bde54fE9e787f6d1b8E846e334"; // BAYC contract address
 const tokenId = 1; // A token we'd like to retrieve its metadata of
 
 const contract = new web3.eth.Contract(tokenURIABI, tokenContract);
@@ -39,13 +39,13 @@ async function getNFTMetadata() {
 
     console.log(result); // ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/101
 
-    const ipfsURL = addIPFSProxy(result);
+    // const ipfsURL = addIPFSProxy(result);
 
-    const response = await fetch(ipfsURL);
-    const metadata = await response.json();
-    console.log(metadata); // Metadata in JSON
+    // const response = await fetch(ipfsURL);
+    // const metadata = await response.json();
+    // console.log(metadata); // Metadata in JSON
 
-    const image = addIPFSProxy(metadata.image);
+    //const image = addIPFSProxy(metadata.image);
 }
 
 getNFTMetadata();

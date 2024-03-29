@@ -3,9 +3,9 @@ pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract CryptoPunksMock is ERC721 {
+contract ChubbitMock is ERC721 {
     address public constant realContractAddress =
-        0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB; // Mainnet address for testing purposes on testnet deployment
+        0x76603b2Dc8E75fD3411935169AC30f6b3387B7A2; // Mainnet address for testing purposes on testnet deployment
 
     constructor(
         string memory name,
